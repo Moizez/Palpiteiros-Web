@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-
 import { AuthContext } from '../../../contexts/AuthContext'
 
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { fade, makeStyles, Avatar } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -15,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
+
+import logowhite from '../../../assets/images/logo-white.png'
 
 const ToolBar = () => {
 
@@ -99,6 +100,11 @@ const ToolBar = () => {
         <div className={classes.grow}>
             <AppBar position="static" className={classes.appbar}>
                 <Toolbar>
+                    <Avatar
+                        className={classes.logo}
+                        alt="logo producer point"
+                        src={logowhite}
+                    />
                     <Typography className={classes.title} variant="h6" noWrap>
                         Palpiteiros
                     </Typography>
@@ -152,6 +158,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         display: 'none',
+        marginLeft: 20,
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
@@ -206,6 +213,10 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+    logo: {
+        height: 55,
+        width: 55
+    }
 }))
 
 export default ToolBar

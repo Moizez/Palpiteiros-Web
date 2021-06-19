@@ -7,7 +7,7 @@ import {
     CardMedia, Typography, Grid
 } from '@material-ui/core'
 
-import logo from '../../../assets/images/euro2020.jpeg'
+import logo from '../../../assets/images/euro2020.jpg'
 
 const ManagerHome = () => {
 
@@ -71,7 +71,8 @@ const useStyles = makeStyles({
         height: 200,
     },
     typography: {
-        color: '#022c6f'
+        color: '#022c6f',
+        fontWeight: 'bold'
     }
 
 })
