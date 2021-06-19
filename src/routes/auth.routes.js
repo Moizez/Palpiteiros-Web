@@ -7,7 +7,7 @@ const AuthRoutes = () => {
 
     return (
         <Switch>
-            <Route path='/sign-in' component={SignIn} />
+            <Route exact path='/' component={SignIn} />
         </Switch>
     )
 

@@ -2,12 +2,14 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import ManagerHome from '../pages/Manager/ManagerHome'
+import NotFound from '../pages/NotFound'
 
 const AppRoutes = () => {
 
     return (
         <Switch>
-            <Route path='/' component={ManagerHome} />
+            <Route exact path='/home' component={ManagerHome} />
+            <Route exact path='*' component={NotFound} />
         </Switch>
     )
 

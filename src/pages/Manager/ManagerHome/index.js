@@ -1,9 +1,11 @@
 import React from 'react'
 
 const ManagerHome = () => {
+
+
     return (
         <div>
-            ManagerHome
+            HOME
         </div>
     )
 }

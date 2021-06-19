@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import api from '../services/api'
@@ -9,6 +10,7 @@ const AuthProvider = ({ children }) => {
 
     const [loadingAuth, setLoadingAuth] = useState(false)
     const [user, setUser] = useState(null)
+    const history = useHistory()
 
     useEffect(() => {
         const loadStorage = () => {
@@ -29,6 +31,7 @@ const AuthProvider = ({ children }) => {
             setUser(response.data)
             storageUser(response.data)
             setLoadingAuth(false)
+            history.push('/home')
             return
         } else if (response.status === 404) {
             setLoadingAuth(false)
@@ -45,10 +48,15 @@ const AuthProvider = ({ children }) => {
         Cookies.set('@palpiteiros:user', data, { expires: 999 })
     }
 
+    const handleLogout = () => {
+        Cookies.remove('@palpiteiros:user')
+        window.location.href = '/'
+    }
+
     return (
         <AuthContext.Provider value={{
             signed: !!user, user, loadingAuth,
-            handleSignIn
+            handleSignIn, handleLogout
         }}>
             {children}
         </AuthContext.Provider>
