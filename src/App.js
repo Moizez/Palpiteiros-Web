@@ -1,32 +1,41 @@
 import React from 'react'
-import { BrowserRouter , useHistory} from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import './App.css'
 
 import { Body } from './globalStyles'
 import AuthProvider from './contexts/AuthContext'
 import ToolBar from './components/MaterialUi/ToolBar'
+import history from './routes/history'
 import Routes from './routes'
+import Footer from './components/Footer'
+import { isLogged } from './routes/auth'
 
 const App = () => {
 
-	const history = useHistory()
+	const logged = isLogged()
 
 	return (
-		<BrowserRouter>
 
-			<AuthProvider>
-		
-				<ToolBar />
+		<AuthProvider>
 
-				<Body>
+			{logged ? <ToolBar /> : null}
+
+			<Body>
+
+				<Router history={history}>
 
 					<Routes />
-					
-				</Body>
 
-			</AuthProvider>
+				</Router>
 
-		</BrowserRouter>
+
+
+			</Body>
+
+			{logged ? <Footer /> : null}
+
+		</AuthProvider>
+
 	);
 }
 

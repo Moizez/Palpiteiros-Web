@@ -1,8 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { useHistory } from 'react-router-dom'
-import Cookies from 'js-cookie'
 
 import api from '../services/api'
+import history from '../routes/history'
 
 export const AuthContext = createContext({})
 
@@ -10,16 +9,14 @@ const AuthProvider = ({ children }) => {
 
     const [loadingAuth, setLoadingAuth] = useState(false)
     const [user, setUser] = useState(null)
-    const history = useHistory()
 
     useEffect(() => {
-        const loadStorage = () => {
-            const storageUser = Cookies.get('@palpiteiros:user')
+        (() => {
+            const storageUser = localStorage.getItem('@palpiteiros:user')
             if (storageUser) {
                 setUser(JSON.parse(storageUser))
             }
-        }
-        loadStorage()
+        })()
     }, [])
 
     const handleSignIn = async (email, password) => {
@@ -29,9 +26,9 @@ const AuthProvider = ({ children }) => {
 
         if (response.data) {
             setUser(response.data)
-            storageUser(response.data)
+            localStorage.setItem('@palpiteiros:user', JSON.stringify(response.data))
             setLoadingAuth(false)
-            history.push('/home')
+            history.push('/')
             return
         } else if (response.status === 404) {
             setLoadingAuth(false)
@@ -44,18 +41,14 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const storageUser = (data) => {
-        Cookies.set('@palpiteiros:user', data, { expires: 999 })
-    }
-
     const handleLogout = () => {
-        Cookies.remove('@palpiteiros:user')
-        window.location.href = '/'
+        localStorage.removeItem('@palpiteiros:user')
+        history.push('/sign-in')
     }
 
     return (
         <AuthContext.Provider value={{
-            signed: !!user, user, loadingAuth,
+            user, loadingAuth,
             handleSignIn, handleLogout
         }}>
             {children}

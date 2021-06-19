@@ -44,9 +44,6 @@ const SignIn = () => {
             <CssBaseline />
             <div className={classes.paper}>
                 <img className={classes.logo} src={logo} alt='' />
-                <Typography className={classes.typography} component="h1" variant="h5">
-                    Palpiteiros
-                </Typography>
                 <form className={classes.form} noValidate onSubmit={formik.handleSubmit}>
                     <TextField
                         variant="outlined"
@@ -147,19 +144,14 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     logo: {
-        width: 160
+        width: 200, 
+        marginBottom: 20
     },
     title: {
         flexGrow: 1,
         textTransform: 'capitalize',
         margin: 0,
     },
-    typography: {
-        textTransform: 'uppercase',
-        fontWeight: 'bold',
-        fontSize: 18,
-        color: '#022c9f'
-    }
 }));
 
 export default SignIn

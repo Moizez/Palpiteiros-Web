@@ -1,5 +1,4 @@
 import api_fetch from './api_fetch'
-import Cookies from 'js-cookie'
 
 export default {
 
