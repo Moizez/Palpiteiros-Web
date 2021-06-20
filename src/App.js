@@ -15,27 +15,21 @@ const App = () => {
 	const logged = isLogged()
 
 	return (
-
 		<AuthProvider>
+			<Router history={history}>
 
-			{logged ? <ToolBar /> : null}
+				{logged ? <ToolBar /> : null}
 
-			<Body>
-
-				<Router history={history}>
+				<Body>
 
 					<Routes />
 
-				</Router>
+				</Body>
 
+				{logged ? <Footer /> : null}
+			</Router>
 
-
-			</Body>
-
-			{logged ? <Footer /> : null}
-
-		</AuthProvider>
-
+		</AuthProvider >
 	);
 }
 

@@ -20,4 +20,9 @@ export default {
         const response = await api_fetch.get(`/groups/findManyByChampionshipContainsId/${id}`)
         return response
     },
+
+    getFlagById: async (id) => {
+        const response = await api_fetch.get(`/teams/findByShield/${id}`)
+        return response
+    },
 }

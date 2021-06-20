@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import {Link} from 'react-router-dom'
 import { AuthContext } from '../../../contexts/AuthContext'
 
 import { fade, makeStyles, Avatar } from '@material-ui/core'
@@ -102,8 +103,10 @@ const ToolBar = () => {
                 <Toolbar>
                     <Avatar
                         className={classes.logo}
-                        alt="logo producer point"
+                        component={Link}
+                        alt="logo palpiteiros"
                         src={logowhite}
+                        to='/'
                     />
                     <Typography className={classes.title} variant="h6" noWrap>
                         Palpiteiros
