@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import FlatList from 'flatlist-react'
 import { useParams, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Grid, makeStyles, Tabs, Tab, Typography, Box, Button } from '@material-ui/core'
@@ -25,7 +26,6 @@ const NavTabs = () => {
     const { user } = useContext(AuthContext)
     const [value, setValue] = useState(0)
 
-    const [confrontations, setConfrontations] = useState([])
     const [groups, setGroups] = useState([])
     const [roundOf16, setRoundOf16] = useState([])
     const [quarterfinals, setQuarterfinals] = useState([])
@@ -33,11 +33,6 @@ const NavTabs = () => {
     const [finals, setFinals] = useState([])
 
     const handleChange = (event, newValue) => setValue(newValue)
-
-    const loadConfrontationsToEndByChampionships = async () => {
-        const response = await api_confrontation.getConfrontationsToEndByChampionships(id)
-        setConfrontations(response.data)
-    }
 
     const loadGroups = async () => {
         const response = await api_confrontation.getGroupsByChampionshipId(id)
@@ -65,10 +60,6 @@ const NavTabs = () => {
     }
 
     useEffect(() => {
-        loadConfrontationsToEndByChampionships()
-    }, [])
-
-    useEffect(() => {
         loadGroups()
         loadRoundOf16()
         loadQuarterfinals()
@@ -91,7 +82,7 @@ const NavTabs = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
-                <Matches data={confrontations} />
+                <Matches id={id} />
             </TabPanel>
 
             <TabPanel value={value} index={1}>
