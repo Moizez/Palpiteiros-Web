@@ -16,7 +16,7 @@ const Matches = ({ id }) => {
     const [confrontations, setConfrontations] = useState([])
 
     const loadConfrontationsToEndByChampionships = async () => {
-        const response = await api.getAllConfrontation()
+        const response = await api.getConfrontationsToEndByChampionships(id)
         setConfrontations(response.data)
     }
 
@@ -29,7 +29,7 @@ const Matches = ({ id }) => {
             <FlatList
                 list={confrontations}
                 renderItem={(item) => <MatchList data={item} />}
-                renderWhenEmpty={() => <div>Não há confrontos!</div>}
+                renderWhenEmpty={() => <div style={{marginBottom: 30}}>Não há confrontos!</div>}
             />
             <Button
                 onClick={() => history.goBack()}
@@ -47,11 +47,11 @@ const Matches = ({ id }) => {
 
 const useStyles = makeStyles({
     backButton: {
-        backgroundColor: '#458CB8',
+        backgroundColor: '#495057',
         marginRight: '2%',
 
         '&:hover': {
-            background: '#33617D'
+            background: '#343a40'
         },
     },
     saveButton: {

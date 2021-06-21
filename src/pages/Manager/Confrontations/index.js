@@ -114,10 +114,10 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonBack: {
         margin: theme.spacing(1),
-        backgroundColor: '#458CB8',
+        backgroundColor: '#6c757d',
 
         '&:hover': {
-            background: '#33617D'
+            background: '#495057'
         },
     },
 }))

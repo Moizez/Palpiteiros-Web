@@ -25,4 +25,11 @@ export default {
         const response = await api_fetch.get(`/teams/findByShield/${id}`)
         return response
     },
+
+    setSuspend: async (id) => {
+        const request = await api_fetch.put(`/confrontations/setSuspended/${id}`, { suspended: true })
+        return request
+    },
+
+    
 }
