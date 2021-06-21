@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import FlatList from 'flatlist-react'
 import { useParams, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Grid, makeStyles, Tabs, Tab, Typography, Box, Button } from '@material-ui/core'
-import AddIcon from '@material-ui/icons/Add'
-import ReplyIcon from '@material-ui/icons/Reply'
+import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core'
 
 import api_confrontation from '../../../services/api_confrontation'
 import api_qualifiers from '../../../services/api_qualifiers'

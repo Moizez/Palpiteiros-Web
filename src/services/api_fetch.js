@@ -1,8 +1,9 @@
+//const API = "http://localhost:8080/api";
 //const API = 'https://palpiteiros-api.herokuapp.com/api'
 //const API = 'http://192.168.1.128:8080/api'
 const API = 'https://palpiteiros.resetnet.info/api'
 
-export const ImageUrl = `${API}/teams/findByShield/` 
+export const ImageUrl = `${API}/teams/findByShield/`
 
 export default {
 
