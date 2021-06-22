@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core'
 
 import api_confrontation from '../../../services/api_confrontation'
 import api_qualifiers from '../../../services/api_qualifiers'
-import { AuthContext } from '../../../contexts/AuthContext'
 
 import Matches from './Matches'
 import GroupStage from './GroupStage'
@@ -13,14 +12,11 @@ import RoundOf16 from './RoundOf16'
 import Quarterfinals from './Quarterfinals'
 import Finals from './Finals'
 
-
 const NavTabs = () => {
 
     const classes = useStyles()
-    const history = useHistory()
     const { id } = useParams()
 
-    const { user } = useContext(AuthContext)
     const [value, setValue] = useState(0)
 
     const [groups, setGroups] = useState([])

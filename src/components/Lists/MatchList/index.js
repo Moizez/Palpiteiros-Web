@@ -173,7 +173,7 @@ const MatchList = ({ data, load }) => {
                             <TableRow>
                                 <TableCell align="center">{data.teamHome?.initials}</TableCell>
                                 <TableCell align="right">
-                                    <img className={classes.flag} width="40" src={`${ImageUrl}${data.teamHome?.id}`} />
+                                    <img className={classes.flag} alt='bandeiras' width="40" src={`${ImageUrl}${data.teamHome?.id}`} />
                                 </TableCell>
                                 <TableCell align="right">
                                     <TextField
@@ -216,7 +216,7 @@ const MatchList = ({ data, load }) => {
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    <img className={classes.flag} width="40" src={`${ImageUrl}${data.teamVisiting?.id}`} />
+                                    <img className={classes.flag} alt='bandeiras' width="40" src={`${ImageUrl}${data.teamVisiting?.id}`} />
                                 </TableCell>
                                 <TableCell align="center">{data.teamVisiting?.initials}</TableCell>
                             </TableRow>
@@ -224,7 +224,7 @@ const MatchList = ({ data, load }) => {
                             <TableRow>
                                 <TableCell>Cartões amarelos</TableCell>
                                 <TableCell align="right">
-                                    <img className={classes.flag} width="40" src={yellowcard} />
+                                    <img className={classes.flag} alt='cartão amarelo' width="40" src={yellowcard} />
                                 </TableCell>
                                 <TableCell align="right">
                                     <TextField
@@ -266,7 +266,7 @@ const MatchList = ({ data, load }) => {
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    <img className={classes.flag} width="40" src={yellowcard} />
+                                    <img className={classes.flag} alt='cartão amarelo' width="40" src={yellowcard} />
                                 </TableCell>
                                 <TableCell>Cartões amarelos</TableCell>
                             </TableRow>
@@ -274,7 +274,7 @@ const MatchList = ({ data, load }) => {
                             <TableRow>
                                 <TableCell>Cartões vermelhos</TableCell>
                                 <TableCell align="right">
-                                    <img className={classes.flag} width="40" src={redcard} />
+                                    <img className={classes.flag} alt='cartão vermelho' width="40" src={redcard} />
                                 </TableCell>
                                 <TableCell align="right">
                                     <TextField
@@ -316,7 +316,7 @@ const MatchList = ({ data, load }) => {
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    <img className={classes.flag} width="40" src={redcard} />
+                                    <img className={classes.flag} alt='cartão vermelho' width="40" src={redcard} />
                                 </TableCell>
                                 <TableCell>Cartões vermelhos</TableCell>
                             </TableRow>
@@ -361,7 +361,7 @@ const MatchList = ({ data, load }) => {
                                 <TableRow>
                                     <TableCell>Pênaltis da {data.teamHome?.initials}</TableCell>
                                     <TableCell align="right">
-                                        <img className={classes.flag} width="40" src={penalty} />
+                                        <img className={classes.flag} alt='pênalti' width="40" src={penalty} />
                                     </TableCell>
                                     <TableCell align="right">
                                         <TextField
@@ -401,7 +401,7 @@ const MatchList = ({ data, load }) => {
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <img className={classes.flag} width="40" src={penalty} />
+                                        <img className={classes.flag} alt='pênalti' width="40" src={penalty} />
                                     </TableCell>
                                     <TableCell align="right">Pênaltis da {data.teamVisiting?.initials}</TableCell>
                                 </TableRow>
@@ -422,6 +422,7 @@ const MatchList = ({ data, load }) => {
                         startIcon={<SaveIcon />}
                         color="primary"
                         variant="contained"
+                        disabled={isSuspended}
                     >
                         Salvar
                     </Button>
@@ -432,6 +433,7 @@ const MatchList = ({ data, load }) => {
                         startIcon={<EditIcon />}
                         color="primary"
                         variant="contained"
+                        disabled={isSuspended}
                     >
                         Atualizar
                     </Button>

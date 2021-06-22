@@ -18,7 +18,7 @@ const App = () => {
 		<AuthProvider>
 			<Router history={history}>
 
-				{logged ? <ToolBar /> : null}
+				{logged && <ToolBar />}
 
 				<Body>
 
@@ -26,7 +26,7 @@ const App = () => {
 
 				</Body>
 
-				{logged ? <Footer /> : null}
+				{logged && <Footer />}
 			</Router>
 
 		</AuthProvider >

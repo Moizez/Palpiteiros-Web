@@ -4,8 +4,7 @@ import * as yup from 'yup'
 
 import {
     Button, CssBaseline, TextField, FormControlLabel, Checkbox,
-    Typography, Container, makeStyles, CircularProgress,
-    InputAdornment, IconButton
+    Container, makeStyles, CircularProgress, InputAdornment, IconButton
 } from '@material-ui/core'
 
 import Visibility from '@material-ui/icons/Visibility'
@@ -144,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     logo: {
-        width: 200, 
+        width: 200,
         marginBottom: 20
     },
     title: {

@@ -42,8 +42,9 @@ const AuthProvider = ({ children }) => {
     }
 
     const handleLogout = () => {
+        setUser(null)
         localStorage.removeItem('@palpiteiros:user')
-        history.push('/sign-in')
+        window.location.href = '/sign-in'
     }
 
     return (
