@@ -109,17 +109,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         borderRadius: 10
     },
-    button: {
-        margin: theme.spacing(1),
-    },
-    buttonBack: {
-        margin: theme.spacing(1),
-        backgroundColor: '#6c757d',
-
-        '&:hover': {
-            background: '#495057'
-        },
-    },
 }))
 
 const TabPanel = (props) => {
@@ -135,7 +124,7 @@ const TabPanel = (props) => {
         >
             {value === index && (
                 <Box p={3}>
-                    <Typography>{children}</Typography>
+                    <Typography component={'div'}>{children}</Typography>
                 </Box>
             )}
         </div>

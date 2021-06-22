@@ -108,12 +108,12 @@ const ToolBar = () => {
                         src={logowhite}
                         to='/'
                     />
-                    <Typography className={classes.title} variant="h6" noWrap>
+                    <Typography className={classes.title} component={'div'} variant="h6" noWrap>
                         Palpiteiros
                     </Typography>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <Typography className={classes.title} variant="h6" noWrap>
+                        <Typography className={classes.title} component={'div'} variant="h6" noWrap>
                             {user?.name}
                         </Typography>
 

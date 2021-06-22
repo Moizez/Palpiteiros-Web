@@ -26,8 +26,8 @@ export default {
         return response
     },
 
-    setSuspend: async (id) => {
-        const request = await api_fetch.put(`/confrontations/setSuspended/${id}`, { suspended: true })
+    setSuspend: async (id, status) => {
+        const request = await api_fetch.put(`/confrontations/setSuspended/${id}`, { suspended: status })
         return request
     },
 

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
-import * as yup from 'yup'
 import { addHours, format, parseISO } from 'date-fns'
 import pt from 'date-fns/locale/pt'
 
@@ -12,14 +11,15 @@ import {
     TableContainer, TableHead, TableRow, Paper, Button,
     Snackbar, SnackbarContent, Switch, FormControlLabel
 } from '@material-ui/core'
-import {SaveIcon, EditIcon} from '@material-ui/icons'
+import SaveIcon from '@material-ui/icons/Save'
+import EditIcon from '@material-ui/icons/Edit'
 
 import { ImageUrl } from '../../../services/api_fetch'
 import redcard from '../../../assets/images/redcard.png'
 import yellowcard from '../../../assets/images/yellowcard.png'
 import penalty from '../../../assets/images/penalty.jpg'
 
-const MatchList = ({ data }) => {
+const MatchList = ({ data, load }) => {
 
     const classes = useStyles()
 
@@ -29,6 +29,18 @@ const MatchList = ({ data }) => {
 
     const [isPenalty, setPenalty] = useState(false)
     const [isSuspended, setSuspended] = useState(!!data?.suspended)
+
+    useEffect(() => {
+        formik.setFieldValue('home', data?.scoreBoard ? data.scoreBoard?.golsHome : 0)
+        //formik.setFieldValue('homepenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.golsHome : 0)
+        formik.setFieldValue('homeyellow', data?.scoreBoard ? data.scoreBoard?.yellowHomeCard : 0)
+        formik.setFieldValue('homered', data?.scoreBoard ? data.scoreBoard?.redHomeCard : 0)
+
+        formik.setFieldValue('away', data?.scoreBoard ? data.scoreBoard?.golsVisiting : 0)
+        //formik.setFieldValue('awaypenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.awaypenalty : 0)
+        formik.setFieldValue('awayyellow', data?.scoreBoard ? data.scoreBoard?.yellowVisitingCard : 0)
+        formik.setFieldValue('awayred', data?.scoreBoard ? data.scoreBoard?.redVisitingCard : 0)
+    }, [])
 
     const initialFormState = {
         home: 0,
@@ -46,28 +58,56 @@ const MatchList = ({ data }) => {
         onSubmit: async (values) => {
 
             if (!isSuspended) {
-                if (data.id && (!isKnockout() || isKnockout()) && !isPenalty) {
-                    await api_scoreboard.saveScore(values, data.id)
+
+                if (!data?.scoreBoard) {
+                    if (data.id && (!isKnockout() || isKnockout()) && !isPenalty) {
+                        const response = await api_scoreboard.saveScore(values, data.id)
+                        if (response.status >= 200 && response.status <= 299)
+                            setSnackColor('#070')
+                        setSnackMessage('Placar salvo com sucesso!')
+                        handleOpenSnack()
+                        setTimeout(() => {
+                            load()
+                        }, 1500);
+                        return
+                    }
+                    await handleSaveKnockout(values)
                     return
+
+                } else {
+                    if (data.id && (!isKnockout() || isKnockout()) && !isPenalty) {
+                        const response = await api_scoreboard.updateScore(values, data.id)
+                        if (response.status >= 200 && response.status <= 299)
+                            setSnackColor('#070')
+                        setSnackMessage('Placar atualizado com sucesso!')
+                        handleOpenSnack()
+                        setTimeout(() => {
+                            load()
+                        }, 1500);
+                        return
+                    }
+                    await handleSaveKnockout(values)
+                    return
+
                 }
-                await handleSaveKnockout(data.id)
+            } else {
+                setSnackColor('#da1337')
+                setSnackMessage('Erro inesperado!')
+                handleOpenSnack()
                 return
             }
-
-            await handleSaveSuspend(data.id)
 
         }
     })
 
-    const handleSaveSuspend = async () => {
-        if (isSuspended) {
-            await api_confrontation.setSuspend(data.id)
-        }
-    }
-
     const handleSaveKnockout = async (values) => {
         if (isKnockout() && isPenalty) {
-            await api_scoreboard.savePenaltyScore(values, data.id);
+            const response = await api_scoreboard.savePenaltyScore(values, data.id)
+            if (response.status >= 200 && response.status <= 299)
+                setSnackColor('#070')
+            setSnackMessage('Placar com penaltis salvo com sucesso!')
+            handleOpenSnack()
+            return
         }
     }
 
@@ -87,9 +127,26 @@ const MatchList = ({ data }) => {
         return format(result, "d 'de' LLL 'às' H:mm", { locale: pt })
     }
 
-    const handleSuspend = () => setSuspended(!isSuspended)
+    const handleSuspend = async () => {
+        setSuspended(!isSuspended)
+        let status = isSuspended
+        if (status) {
+            const response = await api_confrontation.setSuspend(data.id, false)
+            if (response.status >= 200 && response.status <= 299)
+                setSnackColor('#070')
+            setSnackMessage('Jogo liberado!')
+            handleOpenSnack()
+            return
+        } else {
+            const response = await api_confrontation.setSuspend(data.id, true)
+            if (response.status >= 200 && response.status <= 299)
+                setSnackColor('#f3722c')
+            setSnackMessage('Jogo suspenso!')
+            handleOpenSnack()
+            return
+        }
+    }
     const handlePenalty = () => setPenalty(!isPenalty)
-
     const handleOpenSnack = () => setSnack(true)
     const handleCloseSnack = () => setSnack(false)
 
@@ -127,6 +184,7 @@ const MatchList = ({ data }) => {
                                         size='small'
                                         style={{ width: 90 }}
                                         variant='outlined'
+                                        disabled={isSuspended}
                                         value={formik.values.home > 0
                                             ? formik.values.home
                                             : 0
@@ -147,6 +205,7 @@ const MatchList = ({ data }) => {
                                         size='small'
                                         style={{ width: 90 }}
                                         variant='outlined'
+                                        disabled={isSuspended}
                                         value={formik.values.away > 0
                                             ? formik.values.away
                                             : 0}
@@ -176,6 +235,7 @@ const MatchList = ({ data }) => {
                                         size='small'
                                         style={{ width: 90 }}
                                         variant='outlined'
+                                        disabled={isSuspended}
                                         value={formik.values.homeyellow > 0
                                             ? formik.values.homeyellow
                                             : 0}
@@ -195,6 +255,7 @@ const MatchList = ({ data }) => {
                                         size='small'
                                         style={{ width: 90 }}
                                         variant='outlined'
+                                        disabled={isSuspended}
                                         value={formik.values.awayyellow > 0
                                             ? formik.values.awayyellow
                                             : 0}
@@ -224,6 +285,7 @@ const MatchList = ({ data }) => {
                                         size='small'
                                         style={{ width: 90 }}
                                         variant='outlined'
+                                        disabled={isSuspended}
                                         value={formik.values.homered > 0
                                             ? formik.values.homered
                                             : 0}
@@ -243,6 +305,7 @@ const MatchList = ({ data }) => {
                                         size='small'
                                         style={{ width: 90 }}
                                         variant='outlined'
+                                        disabled={isSuspended}
                                         value={formik.values.awayred > 0
                                             ? formik.values.awayred
                                             : 0}
@@ -281,6 +344,7 @@ const MatchList = ({ data }) => {
                                             <FormControlLabel
                                                 control={
                                                     <Switch
+                                                        disabled={isSuspended}
                                                         checked={isPenalty}
                                                         onChange={handlePenalty}
                                                         color="primary"
@@ -382,7 +446,11 @@ const MatchList = ({ data }) => {
                     onClose={handleCloseSnack}
                 >
                     <SnackbarContent
-                        style={{ backgroundColor: snackColor ? snackColor : '#070' }}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            backgroundColor: snackColor ? snackColor : '#070'
+                        }}
                         message={
                             <span>
                                 {snackMessage}

@@ -28,8 +28,14 @@ const Matches = ({ id }) => {
         <>
             <FlatList
                 list={confrontations}
-                renderItem={(item) => <MatchList data={item} />}
-                renderWhenEmpty={() => <div style={{marginBottom: 30}}>Não há confrontos!</div>}
+                renderItem={(item, index) =>
+                    <MatchList
+                        key={index}
+                        data={item}
+                        load={loadConfrontationsToEndByChampionships}
+                    />
+                }
+                renderWhenEmpty={() => <div style={{ marginBottom: 30 }}>Não há confrontos!</div>}
             />
             <Button
                 onClick={() => history.goBack()}
