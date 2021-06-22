@@ -32,7 +32,7 @@ const ManagerHome = () => {
                         <Card
                             className={classes.card}
                         >
-                            <Link style={{ textDecoration: 'none' }} to={`/matches/${item?.id}`}>
+                            <Link style={{ textDecoration: 'none' }} to={`/jackpot/${item?.id}`}>
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}

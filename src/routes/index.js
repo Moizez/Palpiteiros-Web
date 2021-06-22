@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import ManagerHome from '../pages/Manager/ManagerHome'
 import SignIn from '../pages/SignIn'
 import NotFound from '../pages/NotFound'
-import Confrontations from '../pages/Manager/Confrontations'
+import Jackpot from '../pages/Manager/Championships/Eurocopa/Jackpot'
 
 import { isLogged } from './auth'
 
@@ -25,7 +25,7 @@ const Routes = () => {
         <Switch>
             <CustomRoute isPrivate exact path='/' component={ManagerHome} />
             <CustomRoute exact path='/sign-in' component={SignIn} />
-            <CustomRoute exact path='/matches/:id' component={Confrontations} />
+            <CustomRoute exact path='/jackpot/:id' component={Jackpot} />
             <CustomRoute path='*' component={NotFound} />
         </Switch>
     )

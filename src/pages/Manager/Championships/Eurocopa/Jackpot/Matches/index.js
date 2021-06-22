@@ -4,9 +4,8 @@ import FlatList from 'flatlist-react'
 import { makeStyles, Button } from '@material-ui/core'
 import ReplyIcon from '@material-ui/icons/Reply'
 
-import api from '../../../../services/api_confrontation'
-
-import MatchList from '../../../../components/Lists/MatchList'
+import api from '../../../../../../services/api_confrontation'
+import MatchList from '../../../../../../components/Lists/MatchList'
 
 const Matches = ({ id }) => {
 

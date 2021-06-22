@@ -3,16 +3,16 @@ import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core'
 
-import api_confrontation from '../../../services/api_confrontation'
-import api_qualifiers from '../../../services/api_qualifiers'
+import api_confrontation from '../../../../../services/api_confrontation'
+import api_qualifiers from '../../../../../services/api_qualifiers'
 
-import Matches from './Matches'
-import GroupStage from './GroupStage'
-import RoundOf16 from './RoundOf16'
-import Quarterfinals from './Quarterfinals'
-import Finals from './Finals'
+import Matches from '../Jackpot/Matches'
+import GroupStage from '../Jackpot/GroupStage'
+import RoundOf16 from '../Jackpot/RoundOf16'
+import Quarterfinals from '../Jackpot/Quarterfinals'
+import Finals from '../Jackpot/Finals'
 
-const NavTabs = () => {
+const Jackpot = () => {
 
     const classes = useStyles()
     const { id } = useParams()
@@ -97,7 +97,7 @@ const NavTabs = () => {
     );
 }
 
-export default NavTabs
+export default Jackpot
 
 const useStyles = makeStyles((theme) => ({
     root: {
