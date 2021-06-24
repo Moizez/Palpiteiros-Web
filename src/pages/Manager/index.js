@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import api from '../../../services/api_championships'
+import api from '../../services/api_championships'
 
 import {
     makeStyles, Card, CardActionArea, CardContent,
     CardMedia, Typography, Grid
 } from '@material-ui/core'
 
-import logo from '../../../assets/images/euro2020.jpg'
+import logo from '../../assets/images/euro2020.jpg'
 
 const ManagerHome = () => {
 
@@ -32,7 +32,7 @@ const ManagerHome = () => {
                         <Card
                             className={classes.card}
                         >
-                            <Link style={{ textDecoration: 'none' }} to={`/eurocopa/${item?.id}`}>
+                            <Link style={{ textDecoration: 'none' }} to={`/championship/${item?.name?.toLowerCase()}/${item?.id}`}>
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}

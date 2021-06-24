@@ -32,12 +32,12 @@ const MatchList = ({ data, load }) => {
 
     useEffect(() => {
         formik.setFieldValue('home', data?.scoreBoard ? data.scoreBoard?.golsHome : 0)
-        //formik.setFieldValue('homepenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.golsHome : 0)
+        formik.setFieldValue('homepenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.golsHome : 0)
         formik.setFieldValue('homeyellow', data?.scoreBoard ? data.scoreBoard?.yellowHomeCard : 0)
         formik.setFieldValue('homered', data?.scoreBoard ? data.scoreBoard?.redHomeCard : 0)
 
         formik.setFieldValue('away', data?.scoreBoard ? data.scoreBoard?.golsVisiting : 0)
-        //formik.setFieldValue('awaypenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.awaypenalty : 0)
+        formik.setFieldValue('awaypenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.awaypenalty : 0)
         formik.setFieldValue('awayyellow', data?.scoreBoard ? data.scoreBoard?.yellowVisitingCard : 0)
         formik.setFieldValue('awayred', data?.scoreBoard ? data.scoreBoard?.redVisitingCard : 0)
     }, [])

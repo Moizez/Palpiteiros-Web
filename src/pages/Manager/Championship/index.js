@@ -10,15 +10,15 @@ import {
     CardMedia, Typography, Grid
 } from '@material-ui/core'
 
-const Eurocopa = () => {
+const Championship = () => {
 
-    const { id } = useParams()
+    const { name, id } = useParams()
     const classes = useStyles()
 
     return (
         <div className={classes.root}>
             <Typography className={classes.typography} align='center' gutterBottom variant="h5" component="h2">
-                EUROCOPA 2020
+                {name} 2020
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={3}>
@@ -40,7 +40,7 @@ const Eurocopa = () => {
                     <Card
                         className={classes.card}
                     >
-                        <Link style={{ textDecoration: 'none' }} to={`/jackpot/${id}`}>
+                        <Link style={{ textDecoration: 'none' }} to={`/confrontation/${id}`}>
                             <CardActionArea className={classes.cardarea}>
                                 <GiSoccerField color='#022c6f' size={60} />
                                 <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
@@ -55,7 +55,7 @@ const Eurocopa = () => {
                     <Card
                         className={classes.card}
                     >
-                        <Link style={{ textDecoration: 'none' }} to={`/jackpot/${id}`}>
+                        <Link style={{ textDecoration: 'none' }} to={`/scores/${id}`}>
                             <CardActionArea className={classes.cardarea}>
                                 <AiOutlineBarChart color='#022c6f' size={60} />
                                 <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
@@ -105,8 +105,9 @@ const useStyles = makeStyles({
     typography: {
         color: '#022c6f',
         fontWeight: 'bold',
+        textTransform: 'capitalize'
     }
 
 })
 
-export default Eurocopa
+export default Championship

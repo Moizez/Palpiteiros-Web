@@ -21,15 +21,14 @@ export default {
         return response
     },
 
-    getFlagById: async (id) => {
-        const response = await api_fetch.get(`/teams/findByShield/${id}`)
-        return response
-    },
-
     setSuspend: async (id, status) => {
         const request = await api_fetch.put(`/confrontations/setSuspended/${id}`, { suspended: status })
         return request
     },
 
-    
+    getAllConfrontationByGroup: async (id) => {
+        const response = await api_fetch.get(`/confrontations/findManyByAfterOfGameChampionshipContainsIdAndLimit/${id}/${36}`)
+        const filter = await response?.data?.filter(i => i.group !== null) 
+        return filter
+    },
 }

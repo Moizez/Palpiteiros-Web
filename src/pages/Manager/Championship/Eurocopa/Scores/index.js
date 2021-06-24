@@ -3,34 +3,25 @@ import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core'
 
-import api_confrontation from '../../../../../services/api_confrontation'
 import api_qualifiers from '../../../../../services/api_qualifiers'
 
-import Matches from '../Jackpot/Matches'
-import GroupStage from '../Jackpot/GroupStage'
-import RoundOf16 from '../Jackpot/RoundOf16'
-import Quarterfinals from '../Jackpot/Quarterfinals'
-import Finals from '../Jackpot/Finals'
+import GroupStage from '../Scores/GroupStage'
+import RoundOf16 from './RoundOf16'
+import Quarterfinals from './Quarterfinals'
+import Finals from './Finals'
 
-const Jackpot = () => {
+const Scores = () => {
 
     const classes = useStyles()
     const { id } = useParams()
-
     const [value, setValue] = useState(0)
 
-    const [groups, setGroups] = useState([])
     const [roundOf16, setRoundOf16] = useState([])
     const [quarterfinals, setQuarterfinals] = useState([])
     const [semifinals, setSemifinals] = useState([])
     const [finals, setFinals] = useState([])
 
     const handleChange = (event, newValue) => setValue(newValue)
-
-    const loadGroups = async () => {
-        const response = await api_confrontation.getGroupsByChampionshipId(id)
-        setGroups(response.data)
-    }
 
     const loadRoundOf16 = async () => {
         const response = await api_qualifiers.getRoundOf16(id)
@@ -53,7 +44,6 @@ const Jackpot = () => {
     }
 
     useEffect(() => {
-        loadGroups()
         loadRoundOf16()
         loadQuarterfinals()
         loadSemifinals()
@@ -67,37 +57,30 @@ const Jackpot = () => {
                 value={value}
                 onChange={handleChange}
             >
-                <LinkTab label="Confrontos" {...a11yProps(0)} />
-                <LinkTab label="Fase de Grupo" {...a11yProps(1)} />
-                <LinkTab label="Oitavas de Final" {...a11yProps(2)} />
-                <LinkTab label="Quartas de Final" {...a11yProps(3)} />
-                <LinkTab label="Semifina/Final" {...a11yProps(4)} />
+                <LinkTab label="Fase de Grupo" {...a11yProps(0)} />
+                <LinkTab label="Oitavas de Final" {...a11yProps(1)} />
+                <LinkTab label="Quartas de Final" {...a11yProps(2)} />
+                <LinkTab label="Semifina/Final" {...a11yProps(3)} />
             </Tabs>
 
             <TabPanel value={value} index={0}>
-                <Matches id={id} />
+                <GroupStage data={id} />
             </TabPanel>
 
             <TabPanel value={value} index={1}>
-                <GroupStage data={groups} />
-            </TabPanel>
-
-            <TabPanel value={value} index={2}>
                 <RoundOf16 data={roundOf16} />
             </TabPanel>
 
-            <TabPanel value={value} index={3}>
+            <TabPanel value={value} index={2}>
                 <Quarterfinals data={quarterfinals} />
             </TabPanel>
 
-            <TabPanel value={value} index={4}>
+            <TabPanel value={value} index={3}>
                 <Finals semi={semifinals} final={finals}/>
             </TabPanel>
         </div>
     );
 }
-
-export default Jackpot
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -151,3 +134,6 @@ const LinkTab = (props) => {
         />
     );
 }
+
+export default Scores
+
