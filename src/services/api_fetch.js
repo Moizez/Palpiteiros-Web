@@ -1,6 +1,6 @@
-//const API = "http://localhost:8080/api"
+const API = "http://localhost:8080/api"
 //const API = 'https://palpiteiros-api.herokuapp.com/api'
-const API = 'https://palpiteiros.resetnet.info/api'
+//const API = 'https://palpiteiros.resetnet.info/api'
 
 export const ImageUrl = `${API}/teams/findByShield/`
 

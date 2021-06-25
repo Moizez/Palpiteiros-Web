@@ -9,6 +9,7 @@ import api from '../../../../../../services/api_groups'
 import { ImageUrl } from '../../../../../../services/api_fetch'
 
 const GroupStage = ({ id }) => {
+
     const classes = useStyles()
     const [groups, setGroups] = useState([])
 
@@ -25,7 +26,7 @@ const GroupStage = ({ id }) => {
         <TableContainer component={Paper}>
             {groups?.map(group =>
                 <>
-                    <Typography align='center' variant="h6" gutterBottom component="div">
+                    <Typography className={classes.groupTitle} align='center' variant="h6" gutterBottom component="div">
                         Grupo {group?.name}
                     </Typography>
                     <Table key={group?.id} className={classes.table} size="small" aria-label="a dense table">
@@ -80,6 +81,11 @@ const useStyles = makeStyles({
     title: {
         fontWeight: 'bold'
     },
+    groupTitle: {
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        marginTop: 10
+    }
 })
 
 export default GroupStage

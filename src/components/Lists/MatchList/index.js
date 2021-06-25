@@ -76,7 +76,7 @@ const MatchList = ({ data, load }) => {
 
                 } else {
                     if (data.id && (!isKnockout() || isKnockout()) && !isPenalty) {
-                        const response = await api_scoreboard.updateScore(values, data.id)
+                        const response = await api_scoreboard.updateScore(values, data?.scoreBoard?.id)
                         if (response.status >= 200 && response.status <= 299)
                             setSnackColor('#070')
                         setSnackMessage('Placar atualizado com sucesso!')

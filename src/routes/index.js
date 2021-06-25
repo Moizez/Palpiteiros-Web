@@ -26,7 +26,7 @@ const Routes = () => {
 
     return (
         <Switch>
-            <CustomRoute isPrivate exact path='/' component={Manager} />
+            <CustomRoute exact path='/' component={Manager} />
             <CustomRoute exact path='/sign-in' component={SignIn} />
             <CustomRoute exact path='/championship/:name/:id' component={Championship} />
             <CustomRoute exact path='/confrontation/:id' component={Confrontation} />
