@@ -59,7 +59,7 @@ const Championship = () => {
                             <CardActionArea className={classes.cardarea}>
                                 <AiOutlineBarChart color='#022c6f' size={60} />
                                 <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
-                                    Resultados
+                                    Placares
                                 </Typography>
                             </CardActionArea>
                         </Link>
@@ -70,7 +70,7 @@ const Championship = () => {
                     <Card
                         className={classes.card}
                     >
-                        <Link style={{ textDecoration: 'none' }} to={`/jackpot/${id}`}>
+                        <Link style={{ textDecoration: 'none' }} to={`/schendule/${id}`}>
                             <CardActionArea className={classes.cardarea}>
                                 <GiSoccerBall color='#022c6f' size={60} />
                                 <Typography className={classes.typography} gutterBottom variant="h5" component="h2">

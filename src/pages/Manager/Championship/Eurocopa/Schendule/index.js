@@ -1,54 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core'
 
-import api_qualifiers from '../../../../../services/api_qualifiers'
-
-import GroupStage from '../Scores/GroupStage'
+import GroupStage from './GroupStage'
 import RoundOf16 from './RoundOf16'
 import Quarterfinals from './Quarterfinals'
 import Finals from './Finals'
 
-const Scores = () => {
+const Schendule = () => {
 
     const classes = useStyles()
     const { id } = useParams()
     const [value, setValue] = useState(0)
 
-    const [roundOf16, setRoundOf16] = useState([])
-    const [quarterfinals, setQuarterfinals] = useState([])
-    const [semifinals, setSemifinals] = useState([])
-    const [finals, setFinals] = useState([])
-
     const handleChange = (event, newValue) => setValue(newValue)
-
-    const loadRoundOf16 = async () => {
-        const response = await api_qualifiers.getRoundOf16(id)
-        setRoundOf16(response.data)
-    }
-
-    const loadQuarterfinals = async () => {
-        const response = await api_qualifiers.getAllQuarterfinals(id)
-        setQuarterfinals(response.data)
-    }
-
-    const loadSemifinals = async () => {
-        const response = await api_qualifiers.getAllSemis(id)
-        setSemifinals(response.data)
-    }
-
-    const loadFinals = async () => {
-        const response = await api_qualifiers.getAllFinals(id)
-        setFinals(response.data)
-    }
-
-    useEffect(() => {
-        loadRoundOf16()
-        loadQuarterfinals()
-        loadSemifinals()
-        loadFinals()
-    }, [])
 
     return (
         <div className={classes.root}>
@@ -76,7 +42,7 @@ const Scores = () => {
             </TabPanel>
 
             <TabPanel value={value} index={3}>
-                <Finals id={id} />
+                <Finals id={id}/>
             </TabPanel>
         </div>
     );
@@ -135,5 +101,5 @@ const LinkTab = (props) => {
     );
 }
 
-export default Scores
+export default Schendule
 

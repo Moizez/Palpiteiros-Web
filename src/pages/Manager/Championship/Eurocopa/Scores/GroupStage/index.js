@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import FlatList from 'flatlist-react'
 import { makeStyles, Button } from '@material-ui/core'
 import ReplyIcon from '@material-ui/icons/Reply'
@@ -8,9 +8,8 @@ import api_confrontation from '../../../../../../services/api_confrontation'
 
 import MatchList from '../../../../../../components/Lists/MatchList'
 
-const GroupStage = () => {
+const GroupStage = ({ id }) => {
 
-    const { id } = useParams()
     const classes = useStyles()
     const history = useHistory()
     const [groups, setGroups] = useState([])
