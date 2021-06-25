@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 
 import {
     makeStyles, Table, TableBody, TableCell, TableContainer,
     TableHead, TableRow, Paper, Typography
 } from '@material-ui/core'
-import ReplyIcon from '@material-ui/icons/Reply'
 
 import api from '../../../../../../services/api_groups'
 import { ImageUrl } from '../../../../../../services/api_fetch'
@@ -19,8 +17,6 @@ const GroupStage = ({ id }) => {
         setGroups(response.data)
     }
 
-    console.log(groups)
-
     useEffect(() => {
         loadGroups()
     }, [])
@@ -29,7 +25,7 @@ const GroupStage = ({ id }) => {
         <TableContainer component={Paper}>
             {groups?.map(group =>
                 <>
-                    <Typography variant="h6" gutterBottom component="div">
+                    <Typography align='center' variant="h6" gutterBottom component="div">
                         Grupo {group?.name}
                     </Typography>
                     <Table key={group?.id} className={classes.table} size="small" aria-label="a dense table">
