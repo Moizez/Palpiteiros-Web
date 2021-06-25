@@ -20,7 +20,7 @@ const GroupStage = ({ id }) => {
     }
 
     useEffect(() => {
-        loadGroups(groups)
+        loadGroups()
     }, [])
 
 
