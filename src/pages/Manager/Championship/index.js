@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import {
+    makeStyles, Card, CardActionArea, Typography, Grid,
+    Snackbar, SnackbarContent
+} from '@material-ui/core'
+
+import {
     GiSoccerField, GiSoccerBall, GiSoccerKick, GiTrophiesShelf,
     GiTrophyCup, GiRibbonMedal
 } from 'react-icons/gi'
@@ -9,11 +14,8 @@ import { VscHome } from 'react-icons/vsc'
 import { AiOutlineBarChart } from 'react-icons/ai'
 
 import api from '../../../services/api_qualifiers'
+import ConfimationModal from '../../../components/Modals/ConfimationModal'
 
-import {
-    makeStyles, Card, CardActionArea, Typography, Grid,
-    Snackbar, SnackbarContent
-} from '@material-ui/core'
 
 const Championship = () => {
 
@@ -23,61 +25,103 @@ const Championship = () => {
     const [snackMessage, setSnackMessage] = useState('')
     const [snack, setSnack] = useState(false)
     const [snackColor, setSnackColor] = useState('')
+    const [modalTitle, setModalTitle] = useState('')
+    const [open, setOpen] = useState(false)
+    const [option, setOption] = useState('')
 
     const handleGenerateRoundOf16 = async () => {
-        const response = await api.onGenerateRoundOf16(id)
-        if (response.status === 200) {
-            setSnackColor('#070')
-            setSnackMessage('Oitavas geradas com sucesso!')
-            handleOpenSnack()
-        } else {
-            setSnackColor('#da1e37')
-            setSnackMessage('Erro inesperado ao gerar as oitavas!' + response.status)
-            handleOpenSnack()
-        }
+        setOption('roundOf16')
+        setModalTitle('Deseja realmente gerar as oitavas?')
+        handleOpen()
     }
 
     const handleGenerateQuarterfinals = async () => {
-        const response = await api.onGenerateQuarterfinals(id)
-        if (response.status === 200) {
-            setSnackColor('#070')
-            setSnackMessage('Quartas geradas com sucesso!')
-            handleOpenSnack()
-        } else {
-            setSnackColor('#da1e37')
-            setSnackMessage('Erro inesperado ao gerar as quartas!' + response.status)
-            handleOpenSnack()
-        }
+        setOption('quarterfinals')
+        setModalTitle('Deseja realmente gerar as quartas?')
+        handleOpen()
     }
 
     const handleGenerateSemi = async () => {
-        const response = await api.onGenerateSemi(id)
-        if (response.status === 200) {
-            setSnackColor('#070')
-            setSnackMessage('Semifinais geradas com sucesso!')
-            handleOpenSnack()
-        } else {
-            setSnackColor('#da1e37')
-            setSnackMessage('Erro inesperado ao gerar as Semifinais!' + response.status)
-            handleOpenSnack()
-        }
+        setOption('semi')
+        setModalTitle('Deseja realmente gerar as semifinais?')
+        handleOpen()
     }
 
     const handleGenerateFinals = async () => {
-        const response = await api.onGenerateFinals(id)
-        if (response.status === 200) {
-            setSnackColor('#070')
-            setSnackMessage('Final geradas com sucesso!')
-            handleOpenSnack()
-        } else {
-            setSnackColor('#da1e37')
-            setSnackMessage('Erro inesperado ao gerar a final!' + response.status)
-            handleOpenSnack()
+        setOption('final')
+        setModalTitle('Deseja realmente gerar a final?')
+        handleOpen()
+    }
+
+    const handleGenerate = async () => {
+
+        switch (option) {
+            case 'roundOf16':
+                const roundOf16 = await api.onGenerateRoundOf16(id)
+                if (roundOf16.status === 200) {
+                    setSnackColor('#070')
+                    setSnackMessage('Oitavas geradas com sucesso!')
+                    handleClose()
+                    handleOpenSnack()
+                } else {
+                    setSnackColor('#da1e37')
+                    setSnackMessage('Erro inesperado ao gerar as oitavas! Erro: ' + roundOf16.status)
+                    handleClose()
+                    handleOpenSnack()
+                }
+                return
+            case 'quarterfinals':
+                const quarterfinals = await api.onGenerateQuarterfinals(id)
+                if (quarterfinals.status === 200) {
+                    setSnackColor('#070')
+                    setSnackMessage('Quartas geradas com sucesso!')
+                    handleClose()
+                    handleOpenSnack()
+                } else {
+                    setSnackColor('#da1e37')
+                    setSnackMessage('Erro inesperado ao gerar as quartas! Erro: ' + quarterfinals.status)
+                    handleClose()
+                    handleOpenSnack()
+                }
+                return
+            case 'semi':
+                const semi = await api.onGenerateSemi(id)
+                if (semi.status === 200) {
+                    setSnackColor('#070')
+                    setSnackMessage('Semifinais geradas com sucesso!')
+                    handleClose()
+                    handleOpenSnack()
+                } else {
+                    setSnackColor('#da1e37')
+                    setSnackMessage('Erro inesperado ao gerar as Semifinais! Erro: ' + semi.status)
+                    handleClose()
+                    handleOpenSnack()
+                }
+                return
+            case 'final':
+                const final = await api.onGenerateFinals(id)
+                if (final.status === 200) {
+                    setSnackColor('#070')
+                    setSnackMessage('Final geradas com sucesso!')
+                    handleClose()
+                    handleOpenSnack()
+                } else {
+                    setSnackColor('#da1e37')
+                    setSnackMessage('Erro inesperado ao gerar a final! Erro: ' + final.status)
+                    handleClose()
+                    handleOpenSnack()
+                }
+                return
+            default:
+                return null;
         }
+
     }
 
     const handleOpenSnack = () => setSnack(true)
     const handleCloseSnack = () => setSnack(false)
+    const handleOpen = () => setOpen(true)
+    const handleClose = () => setOpen(false)
 
     return (
         <div className={classes.root}>
@@ -219,6 +263,16 @@ const Championship = () => {
                     />
                 </Snackbar>
             }
+
+            {open &&
+                <ConfimationModal
+                    handleClose={handleClose}
+                    open={open}
+                    doConfirm={handleGenerate}
+                    title={modalTitle}
+                />
+            }
+
         </div>
     )
 }

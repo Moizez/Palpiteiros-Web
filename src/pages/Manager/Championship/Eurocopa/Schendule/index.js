@@ -7,45 +7,61 @@ import GroupStage from './GroupStage'
 import RoundOf16 from './RoundOf16'
 import Quarterfinals from './Quarterfinals'
 import Finals from './Finals'
-import FabButton from '../../../../../components/MaterialUi/FabButton'
+import LoadingModal from '../../../../../components/Modals/LoadingModal'
 
 const Schendule = () => {
 
     const classes = useStyles()
     const { id } = useParams()
     const [value, setValue] = useState(0)
+    const [loading, setLoading] = useState(true)
 
     const handleChange = (event, newValue) => setValue(newValue)
+    const showLoading = () => setLoading(true)
+    const hideLoading = () => setLoading(false)
 
     return (
-        <div className={classes.root}>
-            <Tabs
-                variant="fullWidth"
-                value={value}
-                onChange={handleChange}
-            >
-                <LinkTab label="Fase de Grupo" {...a11yProps(0)} />
-                <LinkTab label="Oitavas de Final" {...a11yProps(1)} />
-                <LinkTab label="Quartas de Final" {...a11yProps(2)} />
-                <LinkTab label="Semifina/Final" {...a11yProps(3)} />
-            </Tabs>
+        <>
+            <div className={classes.root}>
+                <Tabs
+                    variant="fullWidth"
+                    value={value}
+                    onChange={handleChange}
+                >
+                    <LinkTab label="Fase de Grupo" {...a11yProps(0)} />
+                    <LinkTab label="Oitavas de Final" {...a11yProps(1)} />
+                    <LinkTab label="Quartas de Final" {...a11yProps(2)} />
+                    <LinkTab label="Semifina/Final" {...a11yProps(3)} />
+                </Tabs>
 
-            <TabPanel value={value} index={0}>
-                <GroupStage id={id} />
-            </TabPanel>
+                <TabPanel value={value} index={0}>
+                    <GroupStage
+                        id={id}
+                        showLoading={showLoading}
+                        hideLoading={hideLoading}
+                    />
+                </TabPanel>
 
-            <TabPanel value={value} index={1}>
-                <RoundOf16 id={id} />
-            </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <RoundOf16 id={id} />
+                </TabPanel>
 
-            <TabPanel value={value} index={2}>
-                <Quarterfinals id={id} />
-            </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <Quarterfinals id={id} />
+                </TabPanel>
 
-            <TabPanel value={value} index={3}>
-                <Finals id={id}/>
-            </TabPanel>
-        </div>
+                <TabPanel value={value} index={3}>
+                    <Finals id={id} />
+                </TabPanel>
+            </div>
+
+            {loading &&
+                <LoadingModal
+                    handleClose={hideLoading}
+                    open={loading}
+                />
+            }
+        </>
     );
 }
 

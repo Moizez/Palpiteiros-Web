@@ -7,21 +7,22 @@ import ReplyIcon from '@material-ui/icons/Reply'
 import api_confrontation from '../../../../../../services/api_confrontation'
 import MatchList from '../../../../../../components/Lists/MatchList'
 
-const GroupStage = ({ id }) => {
+const GroupStage = ({ id, showLoading, hideLoading }) => {
 
     const classes = useStyles()
     const history = useHistory()
     const [groups, setGroups] = useState([])
 
     const loadGroups = async () => {
+        showLoading()
         const response = await api_confrontation.getAllConfrontationByGroup(id)
         setGroups(response)
+        hideLoading()
     }
 
     useEffect(() => {
         loadGroups()
     }, [])
-
 
     return (
         <>

@@ -8,14 +8,16 @@ import {
 import api from '../../../../../../services/api_groups'
 import { ImageUrl } from '../../../../../../services/api_fetch'
 
-const GroupStage = ({ id }) => {
+const GroupStage = ({ id, showLoading, hideLoading }) => {
 
     const classes = useStyles()
     const [groups, setGroups] = useState([])
 
     const loadGroups = async () => {
+        showLoading()
         const response = await api.getGroupsByChampionshipId(id)
         setGroups(response.data)
+        hideLoading()
     }
 
     useEffect(() => {
