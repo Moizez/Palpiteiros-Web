@@ -222,7 +222,7 @@ const RoundOf16List = ({ data, load }) => {
                             </TableRow>
 
                             <TableRow>
-                                <TableCell>Cartões amarelos</TableCell>
+                                <TableCell>Amarelos</TableCell>
                                 <TableCell align="right">
                                     <img className={classes.flag} alt='cartão amarelo' width="40" src={yellowcard} />
                                 </TableCell>
@@ -268,11 +268,11 @@ const RoundOf16List = ({ data, load }) => {
                                 <TableCell>
                                     <img className={classes.flag} alt='cartão amarelo' width="40" src={yellowcard} />
                                 </TableCell>
-                                <TableCell>Cartões amarelos</TableCell>
+                                <TableCell>Amarelos</TableCell>
                             </TableRow>
 
                             <TableRow>
-                                <TableCell>Cartões vermelhos</TableCell>
+                                <TableCell>Vermelhos</TableCell>
                                 <TableCell align="right">
                                     <img className={classes.flag} alt='cartão vermelho' width="40" src={redcard} />
                                 </TableCell>
@@ -318,7 +318,7 @@ const RoundOf16List = ({ data, load }) => {
                                 <TableCell>
                                     <img className={classes.flag} alt='cartão vermelho' width="40" src={redcard} />
                                 </TableCell>
-                                <TableCell>Cartões vermelhos</TableCell>
+                                <TableCell>Vermelhos</TableCell>
                             </TableRow>
 
                             <TableRow>
@@ -473,7 +473,8 @@ const useStyles = makeStyles({
         marginBottom: 30
     },
     title: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
     },
     flag: {
         marginTop: 6

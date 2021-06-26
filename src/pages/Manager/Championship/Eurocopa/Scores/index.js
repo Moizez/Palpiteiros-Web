@@ -78,7 +78,11 @@ const Scores = () => {
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                    <RoundOf16 id={id} />
+                    <RoundOf16
+                        id={id}
+                        showLoading={showLoading}
+                        hideLoading={hideLoading}
+                    />
                 </TabPanel>
 
                 <TabPanel value={value} index={2}>

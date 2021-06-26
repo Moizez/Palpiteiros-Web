@@ -17,6 +17,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import { ImageUrl } from '../../../services/api_fetch'
 import redcard from '../../../assets/images/redcard.png'
 import yellowcard from '../../../assets/images/yellowcard.png'
+import penalty from '../../../assets/images/penalty.jpg'
 
 const MatchList = ({ data, load }) => {
 
@@ -145,7 +146,7 @@ const MatchList = ({ data, load }) => {
             return
         }
     }
-    
+    const handlePenalty = () => setPenalty(!isPenalty)
     const handleOpenSnack = () => setSnack(true)
     const handleCloseSnack = () => setSnack(false)
 
@@ -221,7 +222,7 @@ const MatchList = ({ data, load }) => {
                             </TableRow>
 
                             <TableRow>
-                                <TableCell>Cartões amarelos</TableCell>
+                                <TableCell>Amarelos</TableCell>
                                 <TableCell align="right">
                                     <img className={classes.flag} alt='cartão amarelo' width="40" src={yellowcard} />
                                 </TableCell>
@@ -267,11 +268,11 @@ const MatchList = ({ data, load }) => {
                                 <TableCell>
                                     <img className={classes.flag} alt='cartão amarelo' width="40" src={yellowcard} />
                                 </TableCell>
-                                <TableCell>Cartões amarelos</TableCell>
+                                <TableCell>Amarelos</TableCell>
                             </TableRow>
 
                             <TableRow>
-                                <TableCell>Cartões vermelhos</TableCell>
+                                <TableCell>Vermelhos</TableCell>
                                 <TableCell align="right">
                                     <img className={classes.flag} alt='cartão vermelho' width="40" src={redcard} />
                                 </TableCell>
@@ -317,25 +318,92 @@ const MatchList = ({ data, load }) => {
                                 <TableCell>
                                     <img className={classes.flag} alt='cartão vermelho' width="40" src={redcard} />
                                 </TableCell>
-                                <TableCell>Cartões vermelhos</TableCell>
+                                <TableCell>Vermelhos</TableCell>
                             </TableRow>
-                            {!data?.scoreBoard &&
+
+                            <TableRow>
+                                <TableCell>Jogo suspenso?</TableCell>
+                                <TableCell align="right">
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={isSuspended}
+                                                onChange={handleSuspend}
+                                                color='secondary'
+                                            />
+                                        }
+                                        label={isSuspended ? 'SIM' : 'NÃO'}
+                                    />
+                                </TableCell>
+                                <TableCell colSpan={2}></TableCell>
+                                <TableCell align="right"></TableCell>
+                                {isKnockout() &&
+                                    <>
+                                        <TableCell align="right">Pênaltis?</TableCell>
+                                        <TableCell align="right">
+                                            <FormControlLabel
+                                                control={
+                                                    <Switch
+                                                        disabled={isSuspended}
+                                                        checked={isPenalty}
+                                                        onChange={handlePenalty}
+                                                        color="primary"
+                                                    />
+                                                }
+                                                label={isPenalty ? 'SIM' : 'NÃO'}
+                                            />
+                                        </TableCell>
+                                    </>
+                                }
+                            </TableRow>
+
+                            {isPenalty &&
                                 <TableRow>
-                                    <TableCell>Jogo suspenso?</TableCell>
+                                    <TableCell>Pênaltis da {data.teamHome?.initials}</TableCell>
                                     <TableCell align="right">
-                                        <FormControlLabel
-                                            control={
-                                                <Switch
-                                                    checked={isSuspended}
-                                                    onChange={handleSuspend}
-                                                    color='secondary'
-                                                />
-                                            }
-                                            label={isSuspended ? 'SIM' : 'NÃO'}
+                                        <img className={classes.flag} alt='pênalti' width="40" src={penalty} />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <TextField
+                                            id="homepenalty"
+                                            name='homepenalty'
+                                            label='Pênalti'
+                                            type="number"
+                                            size='small'
+                                            style={{ width: 90 }}
+                                            variant='outlined'
+                                            value={formik.values.homepenalty > 0
+                                                ? formik.values.homepenalty
+                                                : 0}
+                                            onChange={formik.handleChange}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
                                         />
                                     </TableCell>
-                                    <TableCell colSpan={2}></TableCell>
-                                    <TableCell align="right"></TableCell>
+                                    <TableCell align="center">X</TableCell>
+                                    <TableCell>
+                                        <TextField
+                                            id="awaypenalty"
+                                            name='awaypenalty'
+                                            label='Pênalti'
+                                            type="number"
+                                            size='small'
+                                            style={{ width: 90 }}
+                                            variant='outlined'
+                                            value={formik.values.awaypenalty > 0
+                                                ? formik.values.awaypenalty
+                                                : 0}
+                                            onChange={formik.handleChange}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell>
+                                        <img className={classes.flag} alt='pênalti' width="40" src={penalty} />
+                                    </TableCell>
+                                    <TableCell align="right">Pênaltis da {data.teamVisiting?.initials}</TableCell>
                                 </TableRow>
                             }
 
@@ -405,7 +473,8 @@ const useStyles = makeStyles({
         marginBottom: 30
     },
     title: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
     },
     flag: {
         marginTop: 6
