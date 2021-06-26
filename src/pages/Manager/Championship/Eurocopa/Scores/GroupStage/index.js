@@ -5,7 +5,6 @@ import { makeStyles, Button } from '@material-ui/core'
 import ReplyIcon from '@material-ui/icons/Reply'
 
 import api_confrontation from '../../../../../../services/api_confrontation'
-
 import MatchList from '../../../../../../components/Lists/MatchList'
 
 const GroupStage = ({ id }) => {
