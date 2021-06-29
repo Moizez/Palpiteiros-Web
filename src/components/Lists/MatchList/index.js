@@ -37,7 +37,7 @@ const MatchList = ({ data, load }) => {
         formik.setFieldValue('homered', data?.scoreBoard ? data.scoreBoard?.redHomeCard : 0)
 
         formik.setFieldValue('away', data?.scoreBoard ? data.scoreBoard?.golsVisiting : 0)
-        formik.setFieldValue('awaypenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.awaypenalty : 0)
+        formik.setFieldValue('awaypenalty', data?.scoreBoard ? data.scoreBoard?.penalty?.golsVisiting : 0)
         formik.setFieldValue('awayyellow', data?.scoreBoard ? data.scoreBoard?.yellowVisitingCard : 0)
         formik.setFieldValue('awayred', data?.scoreBoard ? data.scoreBoard?.redVisitingCard : 0)
     }, [])
