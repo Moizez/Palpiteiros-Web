@@ -7,32 +7,32 @@ import ReplyIcon from '@material-ui/icons/Reply'
 import api from '../../../../../../services/api_qualifiers'
 import SchenduleList from '../../../../../../components/Lists/SchenduleList'
 
-const RoundOf16 = ({ id, showLoading, hideLoading }) => {
+const Final = ({ id, showLoading, hideLoading }) => {
 
     const classes = useStyles()
     const history = useHistory()
-    const [roundOf16, setRoundOf16] = useState([])
+    const [final, setFinal] = useState([])
 
-    const loadRoundOf16 = async () => {
+    const loadFinal = async () => {
         showLoading()
-        const response = await api.getRoundOf16(id)
-        setRoundOf16(response.data)
+        const response = await api.getAllFinals(id)
+        setFinal(response.data)
         hideLoading()
     }
 
     useEffect(() => {
-        loadRoundOf16()
+        loadFinal()
     }, [])
 
     return (
         <>
             <FlatList
-                list={roundOf16}
+                list={final}
                 renderItem={(item, index) =>
                     <SchenduleList
                         key={index}
                         data={item}
-                        load={loadRoundOf16}
+                        load={loadFinal}
                     />
                 }
                 renderWhenEmpty={() => <div style={{ marginBottom: 30 }}>Não há confrontos!</div>}
@@ -75,4 +75,4 @@ const useStyles = makeStyles({
     }
 })
 
-export default RoundOf16
+export default Final

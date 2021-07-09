@@ -6,7 +6,8 @@ import { makeStyles, Tabs, Tab, Typography, Box } from '@material-ui/core'
 import GroupStage from './GroupStage'
 import RoundOf16 from './RoundOf16'
 import Quarterfinals from './Quarterfinals'
-import Finals from './Finals'
+import Semi from './Semi'
+import Final from './Final'
 import LoadingModal from '../../../../../components/Modals/LoadingModal'
 
 const Schendule = () => {
@@ -31,7 +32,8 @@ const Schendule = () => {
                     <LinkTab label="Fase de Grupo" {...a11yProps(0)} />
                     <LinkTab label="Oitavas de Final" {...a11yProps(1)} />
                     <LinkTab label="Quartas de Final" {...a11yProps(2)} />
-                    <LinkTab label="Semifina/Final" {...a11yProps(3)} />
+                    <LinkTab label="Semifinal" {...a11yProps(3)} />
+                    <LinkTab label="Final" {...a11yProps(4)} />
                 </Tabs>
 
                 <TabPanel value={value} index={0}>
@@ -43,15 +45,35 @@ const Schendule = () => {
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                    <RoundOf16 id={id} />
+                    <RoundOf16
+                        id={id}
+                        showLoading={showLoading}
+                        hideLoading={hideLoading}
+                    />
                 </TabPanel>
 
                 <TabPanel value={value} index={2}>
-                    <Quarterfinals id={id} />
+                    <Quarterfinals
+                        id={id}
+                        showLoading={showLoading}
+                        hideLoading={hideLoading}
+                    />
                 </TabPanel>
 
                 <TabPanel value={value} index={3}>
-                    <Finals id={id} />
+                    <Semi
+                        id={id}
+                        showLoading={showLoading}
+                        hideLoading={hideLoading}
+                    />
+                </TabPanel>
+
+                <TabPanel value={value} index={4}>
+                    <Final
+                        id={id}
+                        showLoading={showLoading}
+                        hideLoading={hideLoading}
+                    />
                 </TabPanel>
             </div>
 
