@@ -2,9 +2,9 @@ import React from 'react';
 import { makeStyles, Modal, Backdrop, Fade } from '@material-ui/core'
 import Lottie from 'react-lottie'
 
-import Loading from '../../../assets/lotties/soccer-field.json'
+import Loading from '../../../assets/lotties/loading.json'
 
-const WarningModal = ({ open, handleClose, message, lottie }) => {
+const LoadingModal = ({ open, handleClose, message, lottie }) => {
 
     const classes = useStyles()
 
@@ -38,7 +38,7 @@ const WarningModal = ({ open, handleClose, message, lottie }) => {
     );
 }
 
-export default WarningModal
+export default LoadingModal
 
 const useStyles = makeStyles((theme) => ({
     modal: {

@@ -7,32 +7,32 @@ import ReplyIcon from '@material-ui/icons/Reply'
 import api from '../../../../../../services/api_qualifiers'
 import MatchList from '../../../../../../components/Lists/MatchList'
 
-const Quarterfinals = ({ id, showLoading, hideLoading }) => {
+const Semi = ({ id, showLoading, hideLoading }) => {
 
     const classes = useStyles()
     const history = useHistory()
-    const [quarterfinals, setQuarterfinals] = useState([])
+    const [semi, setSemi] = useState([])
 
-    const loadQuarterfinals = async () => {
+    const loadSemi = async () => {
         showLoading()
-        const response = await api.getAllQuarterfinals(id)
-        setQuarterfinals(response.data)
+        const response = await api.getAllSemis(id)
+        setSemi(response.data)
         hideLoading()
     }
 
     useEffect(() => {
-        loadQuarterfinals()
+        loadSemi()
     }, [])
 
     return (
         <>
             <FlatList
-                list={quarterfinals}
+                list={semi}
                 renderItem={(item, index) =>
                     <MatchList
                         key={index}
                         data={item}
-                        load={loadQuarterfinals}
+                        load={loadSemi}
                     />
                 }
                 renderWhenEmpty={() => <div style={{ marginBottom: 30 }}>Não há confrontos!</div>}
@@ -75,4 +75,4 @@ const useStyles = makeStyles({
     }
 })
 
-export default Quarterfinals
+export default Semi

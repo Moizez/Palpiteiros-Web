@@ -27,7 +27,7 @@ const MatchList = ({ data, load }) => {
     const [snack, setSnack] = useState(false)
     const [snackColor, setSnackColor] = useState('')
 
-    const [isPenalty, setPenalty] = useState(false)
+    const [isPenalty, setPenalty] = useState(!!data?.scoreBoard?.penalty)
     const [isSuspended, setSuspended] = useState(!!data?.suspended)
 
     useEffect(() => {
@@ -41,6 +41,8 @@ const MatchList = ({ data, load }) => {
         formik.setFieldValue('awayyellow', data?.scoreBoard ? data.scoreBoard?.yellowVisitingCard : 0)
         formik.setFieldValue('awayred', data?.scoreBoard ? data.scoreBoard?.redVisitingCard : 0)
     }, [])
+
+   
 
     const initialFormState = {
         home: 0,
