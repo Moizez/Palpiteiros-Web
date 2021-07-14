@@ -8,6 +8,7 @@ import Championship from '../pages/Manager/Championship'
 import Confrontation from '../pages/Manager/Championship/Eurocopa/Confrontation'
 import Scores from '../pages/Manager/Championship/Eurocopa/Scores'
 import Schendule from '../pages/Manager/Championship/Eurocopa/Schendule'
+import RecoveryPage from '../pages/RecoveryPage'
 
 import { isLogged } from './auth'
 
@@ -28,6 +29,7 @@ const Routes = () => {
         <Switch>
             <CustomRoute isPrivate exact path='/' component={Manager} />
             <CustomRoute exact path='/sign-in' component={SignIn} />
+            <CustomRoute exact path='/recovery' component={RecoveryPage} />
             <CustomRoute exact path='/championship/:name/:id' component={Championship} />
             <CustomRoute exact path='/confrontation/:id' component={Confrontation} />
             <CustomRoute exact path='/scores/:id' component={Scores} />
