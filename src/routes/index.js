@@ -29,7 +29,7 @@ const Routes = () => {
         <Switch>
             <CustomRoute isPrivate exact path='/' component={Manager} />
             <CustomRoute exact path='/sign-in' component={SignIn} />
-            <CustomRoute exact path='/recovery' component={RecoveryPage} />
+            <CustomRoute exact path='/recovery/:token' component={RecoveryPage} />
             <CustomRoute exact path='/championship/:name/:id' component={Championship} />
             <CustomRoute exact path='/confrontation/:id' component={Confrontation} />
             <CustomRoute exact path='/scores/:id' component={Scores} />

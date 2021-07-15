@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
             setUser(response.data)
             localStorage.setItem('@palpiteiros:user', JSON.stringify(response.data))
             setLoadingAuth(false)
-            history.push('/')
+            window.location.href = '/'
             return
         } else if (response.status === 404) {
             setLoadingAuth(false)

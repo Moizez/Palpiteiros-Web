@@ -1,30 +1,51 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 import {
-    Button, CssBaseline, TextField, Grid, Container,
-    makeStyles, CircularProgress, InputAdornment, IconButton
+    Button, CssBaseline, TextField, Grid, Container, makeStyles,
+    InputAdornment, IconButton, Snackbar, SnackbarContent
 } from '@material-ui/core'
 
-import SaveIcon from '@material-ui/icons/Save'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
-import { AuthContext } from '../../contexts/AuthContext'
 import logo from '../../assets/images/logo.png'
+import api from '../../services/api'
 
 const RecoveryPage = () => {
 
     const classes = useStyles()
-    const { handleSignIn, loadingAuth } = useContext(AuthContext)
+    const { token } = useParams()
     const [show, setShow] = useState(false)
+    const [snack, setSnack] = useState(false)
+    const [snackMessage, setSnackMessage] = useState('')
+    const [snackColor, setSnackColor] = useState('')
+    const [id, setId] = useState(null)
+
+    const validateLink = async () => {
+        const response = await api.onCheckToken(token)
+        if (response?.status >= 200 && response?.status <= 299) {
+            setId(response.data.id)
+        } else {
+            setSnackColor('#da1e37')
+            setSnackMessage('Link de redefinição de senha inválido ou expirado!')
+            handleOpenSnack()
+        }
+    }
+
+    useEffect(() => {
+        if (token) {
+            validateLink()
+        }
+    }, [])
 
     const initialFormState = { password: '', passwordConfirmation: '' }
     const validationSchema = yup.object().shape({
         password: yup.string().required('Senha é obrigatório!'),
         passwordConfirmation: yup.string()
-            .test('As senhas correspondem', 'As senhas não correspondem!', function (value) {
+            .test('As senhas correspondem', 'A senha não correspondem!', function (value) {
                 return this.parent.password === value
             })
     })
@@ -33,15 +54,31 @@ const RecoveryPage = () => {
         initialValues: initialFormState,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
+            const response = await api.onRecoverPassword(id, values.password)
+
+            if (response?.status >= 200 && response?.status <= 299) {
+                setSnackColor('#070')
+                setSnackMessage('Nova senha salva com sucesso!')
+                handleOpenSnack()
+            } else {
+                setSnackColor('#da1e37')
+                setSnackMessage('Link de redefinição de senha inválido ou expirado!')
+                handleOpenSnack()
+            }
 
         }
     })
+
+    const handleOpenSnack = () => setSnack(true)
+    const handleCloseSnack = () => setSnack(false)
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <img className={classes.logo} src={logo} alt='' />
+
+                <label className={classes.title}>Crie sua nova senha</label>
 
                 <Grid container >
                     <Grid item xs={12}>
@@ -56,7 +93,7 @@ const RecoveryPage = () => {
                                         type='password'
                                         id="password"
                                         name="password"
-                                        label='Digite uma nova senha'
+                                        label='Digite sua nova senha'
                                         value={formik.values.password}
                                         onChange={formik.handleChange}
                                         error={formik.touched.password && Boolean(formik.errors.password)}
@@ -102,18 +139,32 @@ const RecoveryPage = () => {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
-                            >{loadingAuth ? (
-                                <CircularProgress color='inherit' size={24} />
-                            ) : (
-                                <span>Restaurar</span>
-                            )
-                                }
+                            >
+                                <span>Salvar</span>
                             </Button>
                         </form>
 
                     </Grid>
                 </Grid>
             </div>
+
+            {snack &&
+                <Snackbar
+                    open={snack}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    autoHideDuration={5000}
+                    onClose={handleCloseSnack}
+                >
+                    <SnackbarContent
+                        style={{ backgroundColor: snackColor ? snackColor : '#070' }}
+                        message={
+                            <span>
+                                {snackMessage}
+                            </span>
+                        }
+                    />
+                </Snackbar>
+            }
         </Container>
     )
 }
@@ -146,9 +197,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 20
     },
     title: {
-        flexGrow: 1,
-        textTransform: 'capitalize',
-        margin: 0,
+        textTransform: 'uppercase',
     },
     input: {
         width: 250
