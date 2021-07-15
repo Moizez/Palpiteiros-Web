@@ -24,13 +24,10 @@ const RecoveryPage = () => {
     const [snackColor, setSnackColor] = useState('')
     const [id, setId] = useState(null)
 
-    console.log(token)
-
     const validateLink = async () => {
         const response = await api.onCheckToken(token)
-        console.log(response)
 
-        if (response?.status >= 200 && response?.status <= 299) {
+        if (response?.status === 200) {
             setId(response.data.id)
         } else {
             setSnackColor('#da1e37')
@@ -156,7 +153,7 @@ const RecoveryPage = () => {
                 <Snackbar
                     open={snack}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    autoHideDuration={5000}
+                    autoHideDuration={8000}
                     onClose={handleCloseSnack}
                 >
                     <SnackbarContent
