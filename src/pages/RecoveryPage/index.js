@@ -24,8 +24,12 @@ const RecoveryPage = () => {
     const [snackColor, setSnackColor] = useState('')
     const [id, setId] = useState(null)
 
+    console.log(token)
+
     const validateLink = async () => {
         const response = await api.onCheckToken(token)
+        console.log(response)
+
         if (response?.status >= 200 && response?.status <= 299) {
             setId(response.data.id)
         } else {

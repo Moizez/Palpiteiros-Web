@@ -9,11 +9,13 @@ export default {
     },
 
     onCheckToken: async (token) => {
-        const response = await api_fetch.get(`users/checkLink/${token}`)
+        console.log(token)
+        const response = await api_fetch.get(`/users/checkLink/${token}`)
         return response
     },
 
     onRecoverPassword: async (id, password) => {
+        console.log(id, password)
         const request = await api_fetch.put(`/users/${id}`, { password: password })
         return request
     },
