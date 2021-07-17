@@ -39,7 +39,7 @@ const ManagerHome = () => {
                                         image={logo}
                                         title="Eurocopa 2020"
                                     />
-                                    <CardContent>
+                                    <CardContent className={classes.content}>
                                         <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
                                             {item?.name}
                                         </Typography>
@@ -73,6 +73,9 @@ const useStyles = makeStyles({
     typography: {
         color: '#022c6f',
         fontWeight: 'bold'
+    },
+    content: {
+        backgroundColor: '#ddd'
     }
 
 })

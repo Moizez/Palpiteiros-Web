@@ -9,7 +9,7 @@ export const Container = styled.div`
     text-align: center;
     color: #999;
     font-size: 14px;
-    margin-top: 25px;
+    margin-top: 15px;
     border-top: 1px solid #ccc;
 
     em {

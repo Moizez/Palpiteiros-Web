@@ -2,7 +2,7 @@ import React from 'react'
 import { Router } from 'react-router-dom'
 import './App.css'
 
-import { Body } from './globalStyles'
+import { Body, Template } from './globalStyles'
 import AuthProvider from './contexts/AuthContext'
 import ToolBar from './components/MaterialUi/ToolBar'
 import history from './routes/history'
@@ -17,18 +17,18 @@ const App = () => {
 	return (
 		<AuthProvider>
 			<Router history={history}>
+				<Template>
+					{logged && <ToolBar />}
 
-				{logged && <ToolBar />}
+					<Body>
 
-				<Body>
+						<Routes />
 
-					<Routes />
+					</Body>
 
-				</Body>
-
-				{logged && <Footer />}
+					{logged && <Footer />}
+				</Template>
 			</Router>
-
 		</AuthProvider >
 	);
 }
