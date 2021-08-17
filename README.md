@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Palpiteiros
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Palpiteiros-Preview](https://github.com/moizez/Palpiteiros-Web/blob/main/preview.jpg?raw=true)
 
-## Available Scripts
+Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1715_nkAI5nedEcOTgZXadY7wjD5tV-Js?usp=sharing). 
 
-In the project directory, you can run:
+## Sobre o Palpiteiros
+Este projeto foi desenvolvido com o intuito de criar um sistema web e mobile para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
 
-### `yarn start`
+Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o projeto, código, estrutura ou qualquer coisa que você possa relatar e que possa me tornar um desenvolvedor melhor!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Funcionalidades
+- Após criar seu cadastro você será automaticamente logado no app;
+- Bolões
+	- Participe de bolões oficiais criados pelo próprio app;
+	- Crie seus próprios bolões (em desenvolvimento...);
+	- Convide seu amigos para participar dos seus bolões (em desenvolvimento...).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Campeonatos
+	- Acompanhe a classificação e estatísticas dos campeonatos.
+	
+- Palpites
+	- Realize palpites dos jogos do seu campeonato favorito;
+	- Acompanhe os palpites dos seus amigos;
+	- Pontue em cada rodada e alcance a primeira posição no ranking dos bolões que você participa.
 
-### `yarn test`
+- Ranking
+  	- Concorra com seus amigos para ver quem alcança maior level;
+  	- Aumente seu level a cada acerto conforme os critérios abaixo:
+	 - Placar exato = PE;
+	 - Vitória ou empate = VE;
+	 - Acerto de gols = AG;
+	 - Diferença de gols = DG;
+	 - Palpites realizados = PR;
+	 - Participação em bolões = PB;
+	 - Campeão do bolão = CB;
+	 - Vice-campeão do bolão = VC;
+	 - Terceiro lugar = TL.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Conquistas
+	- A medida que você for subindo de level, desbloqueará novas conquistas;
+	- Acompanhe os palpites dos seus amigos;
+	- Pontue em cada rodada e alcance a primeira posição no ranking dos bolões que você participa.
+	- Lista de conquistas disponíveis até o momento:
+	  - Palpiteiro de várzea;
+	  - Palpiteiro raiz;
+	  - Mestre palpiteiro;
+	  - Palpiteiro animal;
+	  - Um fenômeno!;
+	  - O baixinho tá na área;
+	  - A canhotinha do Messi;
+	  - La mano de dios;
+	  - Rei Pelé dos palpites.
 
-### `yarn build`
+## Instalação
+Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para nstalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pré-requisitos
+Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui] (https://facebook.github.io/react-native/docs/getting-started).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Clonando o repositório**
+```
+$ git clone https://github.com/moizez/Palpiteiros-App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+$ cd Palpiteiros-App
+```
+**Instalando dependências**
+```
+$ yarn
+```
+_ou_
 
-### `yarn eject`
+```
+$ npm install
+```
+## Tecnologias
+- [React-Native](https://facebook.github.io/react-native/) - Build the native app using JavaScript and React
+- [React-Navigation](https://reactnavigation.org/docs/en/getting-started.html) - Router
+- [Context](https://pt-br.reactjs.org/docs/context.html) - Context API
+- [ESlint](https://eslint.org/) - Linter
+- [Prettier](https://prettier.io/) - Code Formatter
+- [Babel](https://babeljs.io/) - JavaScript Compiler
+- [Styled-Components](https://www.styled-components.com/) - Styles
+- [React-Native-Linear-Gradient](https://github.com/react-native-community/react-native-linear-gradient) - Gradient Styles
+- [React-Native-Vector-Icons](https://github.com/oblador/react-native-vector-icons) - Icons
+- [React-Native-Tab-View](https://github.com/satya164/react-native-tab-view) - Tab Screen
+- [Date-FNS](https://date-fns.org/) - Date formatter
+- [Formik](https://formik.org/docs/api/formik) - Input
+- [Yup](https://github.com/jquense/yup) - Input validation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Contatos
+Moisés Henrique | Graduado em Análise e Desenvolvimento de Sistemas - IFRN.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  <div> 
+  <a href="https://www.linkedin.com/in/moizezhenrique/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+  <a href="https://www.instagram.com/moizezhenrique/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
+ 	<a href="https://twitter.com/moizezhenrique" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" target="_blank"></a>
+  <a href = "mailto:moizezhenrique@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+</div>
