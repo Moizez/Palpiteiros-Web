@@ -2,7 +2,7 @@
 
 ![Palpiteiros-Preview](https://github.com/moizez/Palpiteiros-Web/blob/main/preview.jpg?raw=true)
 
-Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1fl2d76CqtOLPt-gYkznTEtT36rvFgjCM?usp=sharing. 
+Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1fl2d76CqtOLPt-gYkznTEtT36rvFgjCM?usp=sharing). 
 
 ## Sobre o Palpiteiros
 Este projeto foi desenvolvido com o intuito de criar um sistema web e [mobile](https://github.com/Moizez/Palpiteiros-App) para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
