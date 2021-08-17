@@ -10,80 +10,51 @@ Este projeto foi desenvolvido com o intuito de criar um sistema web e mobile par
 Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o projeto, código, estrutura ou qualquer coisa que você possa relatar e que possa me tornar um desenvolvedor melhor!
 
 ## Funcionalidades
-- Após criar seu cadastro você será automaticamente logado no app;
+- O login administrativo e recuperação de senha;
 - Bolões
-	- Participe de bolões oficiais criados pelo próprio app;
-	- Crie seus próprios bolões (em desenvolvimento...);
-	- Convide seu amigos para participar dos seus bolões (em desenvolvimento...).
+	- Gerenciar os bolões.
 
 - Campeonatos
-	- Acompanhe a classificação e estatísticas dos campeonatos.
+	- Acompanhe a classificação e estatísticas dos campeonatos;
+	- Cadastrar placares e status das partidas (suspenas e encerradas);
+	- Finalizar cada etapa da competição (fase de grupo, oitavas, quartas e etc).
 	
-- Palpites
-	- Realize palpites dos jogos do seu campeonato favorito;
-	- Acompanhe os palpites dos seus amigos;
-	- Pontue em cada rodada e alcance a primeira posição no ranking dos bolões que você participa.
-
-- Ranking
-  	- Concorra com seus amigos para ver quem alcança maior level;
-  	- Aumente seu level a cada acerto conforme os critérios abaixo:
-	 - Placar exato = PE;
-	 - Vitória ou empate = VE;
-	 - Acerto de gols = AG;
-	 - Diferença de gols = DG;
-	 - Palpites realizados = PR;
-	 - Participação em bolões = PB;
-	 - Campeão do bolão = CB;
-	 - Vice-campeão do bolão = VC;
-	 - Terceiro lugar = TL.
-
-- Conquistas
-	- A medida que você for subindo de level, desbloqueará novas conquistas;
-	- Acompanhe os palpites dos seus amigos;
-	- Pontue em cada rodada e alcance a primeira posição no ranking dos bolões que você participa.
-	- Lista de conquistas disponíveis até o momento:
-	  - Palpiteiro de várzea;
-	  - Palpiteiro raiz;
-	  - Mestre palpiteiro;
-	  - Palpiteiro animal;
-	  - Um fenômeno!;
-	  - O baixinho tá na área;
-	  - A canhotinha do Messi;
-	  - La mano de dios;
-	  - Rei Pelé dos palpites.
-
 ## Instalação
-Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para nstalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
+Nota: O site encontra-se hospedado no heroku mas somente pode ser utilizado pelos administradores.
 
 ### Pré-requisitos
-Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui] (https://facebook.github.io/react-native/docs/getting-started).
+Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React, que pode ser encontrado [aqui](https://pt-br.reactjs.org/docs/getting-started.html).
 
 **Clonando o repositório**
 ```
-$ git clone https://github.com/moizez/Palpiteiros-App
+$ git clone https://github.com/moizez/Palpiteiros-Web
 
-$ cd Palpiteiros-App
+$ cd Palpiteiros-Web
 ```
 **Instalando dependências**
 ```
-$ yarn
+$ yarn install
 ```
 _ou_
 
 ```
 $ npm install
 ```
+**Executando**
+```
+$ yarn dev
+```
+
 ## Tecnologias
-- [React-Native](https://facebook.github.io/react-native/) - Build the native app using JavaScript and React
-- [React-Navigation](https://reactnavigation.org/docs/en/getting-started.html) - Router
-- [Context](https://pt-br.reactjs.org/docs/context.html) - Context API
+- [React](https://pt-br.reactjs.org/docs/getting-started.html) - Build the native app using JavaScript and React
+- [React-Router-Rom](https://reactrouter.com/web/guides/quick-start) - Router
+- [Heroku](https://www.heroku.com/) - PaaS used in the production
 - [ESlint](https://eslint.org/) - Linter
 - [Prettier](https://prettier.io/) - Code Formatter
 - [Babel](https://babeljs.io/) - JavaScript Compiler
 - [Styled-Components](https://www.styled-components.com/) - Styles
-- [React-Native-Linear-Gradient](https://github.com/react-native-community/react-native-linear-gradient) - Gradient Styles
-- [React-Native-Vector-Icons](https://github.com/oblador/react-native-vector-icons) - Icons
-- [React-Native-Tab-View](https://github.com/satya164/react-native-tab-view) - Tab Screen
+- [Express](https://expressjs.com/) - Router of the Application
+- [Material-Ui](https://material-ui.com/pt/getting-started/installation/) - Lib React Components
 - [Date-FNS](https://date-fns.org/) - Date formatter
 - [Formik](https://formik.org/docs/api/formik) - Input
 - [Yup](https://github.com/jquense/yup) - Input validation
