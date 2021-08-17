@@ -2,7 +2,7 @@
 
 ![Palpiteiros-Preview](https://github.com/moizez/Palpiteiros-Web/blob/main/preview.jpg?raw=true)
 
-Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1715_nkAI5nedEcOTgZXadY7wjD5tV-Js?usp=sharing). 
+Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1fl2d76CqtOLPt-gYkznTEtT36rvFgjCM). 
 
 ## Sobre o Palpiteiros
 Este projeto foi desenvolvido com o intuito de criar um sistema web e mobile para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
@@ -20,7 +20,7 @@ Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o
 	- Finalizar cada etapa da competição (fase de grupo, oitavas, quartas e etc).
 	
 ## Instalação
-Nota: o site encontra-se hospedado no heroku mas somente pode ser utilizado pelos administradores.
+Nota: O site encontra-se hospedado no heroku mas somente pode ser utilizado pelos administradores.
 
 ### Pré-requisitos
 Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React, que pode ser encontrado [aqui](https://pt-br.reactjs.org/docs/getting-started.html).
