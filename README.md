@@ -5,7 +5,7 @@
 Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1fl2d76CqtOLPt-gYkznTEtT36rvFgjCM). 
 
 ## Sobre o Palpiteiros
-Este projeto foi desenvolvido com o intuito de criar um sistema web e mobile para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
+Este projeto foi desenvolvido com o intuito de criar um sistema web e [mobile](https://github.com/Moizez/Palpiteiros-App) para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
 
 Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o projeto, código, estrutura ou qualquer coisa que você possa relatar e que possa me tornar um desenvolvedor melhor!
 
