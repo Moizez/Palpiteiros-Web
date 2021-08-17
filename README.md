@@ -20,7 +20,7 @@ Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o
 	- Finalizar cada etapa da competição (fase de grupo, oitavas, quartas e etc).
 	
 ## Instalação
-Nota: O site encontra-se hospedado no heroku mas somente pode ser utilizado pelos administradores.
+Nota: o site encontra-se hospedado no heroku mas somente pode ser utilizado pelos administradores.
 
 ### Pré-requisitos
 Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React, que pode ser encontrado [aqui](https://pt-br.reactjs.org/docs/getting-started.html).
