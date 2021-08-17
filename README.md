@@ -1,4 +1,4 @@
-# Palpiteiros
+# Palpiteiros | Web
 
 ![Palpiteiros-Preview](https://github.com/moizez/Palpiteiros-Web/blob/main/preview.jpg?raw=true)
 
