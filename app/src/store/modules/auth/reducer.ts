@@ -1,58 +1,60 @@
-import produce from "immer";
-import types from "./types";
+import produce from 'immer';
+import { IUserStateProps } from '../../../mvvm/models/State/User';
+import UserState from '../../../mvvm/models/State/User/UserState';
+import User from '../../../mvvm/models/User/User';
+import { IAction } from '../../../types/Action';
+import types from './types';
 
-const INITIAL_STATE = {
-    user: null,
-    code: null,
-    signed: false,
-    loading: false,
+const INITIAL_STATE: IUserStateProps = new UserState(new User(), false, false);
+
+function app(
+	state = INITIAL_STATE,
+	action: IAction<any, User, IUserStateProps>
+) {
+	return produce(state, (draft) => {
+		// console.log('PAYLOAD', action.payload)
+
+		switch (action.type) {
+			case types.SIGN_IN_REQUEST: {
+				return action.instance.parseDraft({
+					...draft,
+					loading: true,
+				});
+			}
+
+			case types.SIGN_IN_SUCCESS: {
+				const user = action.instance.parse([action.payload])[0];
+				return action.instance.parseDraft({
+					signed: true,
+					loading: false,
+					user,
+				});
+			}
+
+			case types.SIGN_UP_REQUEST: {
+				return action.instance.parseDraft({
+					...draft,
+					loading: true,
+				});
+			}
+
+			case types.SIGN_IN_FAILURE: {
+				return action.instance.parseDraft({
+					...draft,
+					loading: false,
+				});
+			}
+
+			case types.SIGN_OUT: {
+				return action.instance.parseDraft({
+					...INITIAL_STATE,
+				});
+			}
+
+			default:
+				return state;
+		}
+	});
 }
 
-function app(state = INITIAL_STATE, action) {
-
-    return produce(state, draft => {
-
-        // console.log('PAYLOAD', action.payload)
-
-        switch (action.type) {
-
-            case types.SET_USER_REDUCER: {
-                draft[action.key] = action.payload
-                draft.loading = false
-                return draft
-            }
-
-            case types.SET_USER: {
-                draft.user = action.payload 
-                draft.loading = false
-                return draft
-            }
-
-            case types.SIGN_IN_REQUEST: {
-                draft.loading = true
-                return draft
-            }
-
-            case types.SIGN_IN_SUCCESS: {
-                draft.code = action.payload
-                draft.signed = true
-                draft.loading = false
-                return draft
-            }
-
-            case types.SIGN_OUT: {
-                draft.user = null
-                draft.code = null
-                draft.signed = false
-                draft.loading = false
-                return draft
-            }
-
-            default:
-                return state
-        }
-
-    })
-}
-
-export default app
+export default app;
