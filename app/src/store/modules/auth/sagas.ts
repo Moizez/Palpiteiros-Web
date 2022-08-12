@@ -8,14 +8,11 @@ export function* signIn({ payload }) {
 	try {
 		const { email, password } = payload;
 		//@ts-ignore
-		const response = yield call(
-			//@ts-ignore
-			axios.post,
-			`${AuthService.connector.baseUrl}${AuthService.endpoint}`,
-			{
-				email: email,
-				password: password,
-			}
+		const response = yield call(() =>
+			AuthService.signIn({
+				email,
+				password,
+			})
 		);
 
 		console.log('LOGIN: ', response.data);

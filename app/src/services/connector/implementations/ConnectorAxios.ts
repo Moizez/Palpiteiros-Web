@@ -23,11 +23,9 @@ export default class ConnectorAxios
 		public interceptor?: AxiosRequestConfig<any>
 	) {
 		if (!this.interceptor) {
-			console.log(this.interceptor);
 			this.instance = axios.create({
 				baseURL: this.baseUrl,
 			});
-			console.log(this.instance.defaults.baseURL);
 		} else if (this.interceptor) {
 			this.useRequestInterceptor(() => {
 				if (this.interceptor) return this.interceptor;

@@ -7,12 +7,17 @@ const Home = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(
-			signInRequest({
-				email: 'augusto@hotmail.com',
-				password: '123',
-			})
-		);
+		console.log('entrou aqui');
+
+		return () => {
+			console.log('return');
+			dispatch(
+				signInRequest({
+					email: 'augusto@hotmail.com',
+					password: '123',
+				})
+			);
+		};
 	}, []);
 
 	return (
