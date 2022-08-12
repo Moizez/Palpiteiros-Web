@@ -6,7 +6,6 @@ import IAuthService from '../interfaces/AuthService';
 class AuthService extends BaseServiceAxios<User> implements IAuthService {
 	constructor() {
 		super('/auth/signin');
-		console.log(this.connector.post);
 	}
 
 	public async signIn({ email, password }: TAuthSign): Promise<any> {
