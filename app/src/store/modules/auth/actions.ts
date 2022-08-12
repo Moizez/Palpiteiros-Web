@@ -2,19 +2,12 @@ import { IUserStateProps } from '../../../mvvm/models/State/User';
 import { IUserProps } from '../../../mvvm/models/User';
 import UserSerializeParseStrategy from '../../../serializer/parse/implementations/User/UserParseStrategy';
 import { IAction } from '../../../types/Action';
+import { TAuthSign } from '../../../types/Request/Auth';
 import types from './types';
 
-export function signInRequest(payload: {
-	email: string;
-	password: string;
-}): IAction<
-	{
-		email: string;
-		password: string;
-	},
-	IUserProps,
-	IUserStateProps
-> {
+export function signInRequest(
+	payload: TAuthSign
+): IAction<TAuthSign, IUserProps, IUserStateProps> {
 	return {
 		type: types.SIGN_IN_REQUEST,
 		payload,

@@ -5,7 +5,19 @@ import User from '../../../mvvm/models/User/User';
 import { IAction } from '../../../types/Action';
 import types from './types';
 
-const INITIAL_STATE: IUserStateProps = new UserState(new User(), false, false);
+const ref = new UserState(new User(), false, false);
+
+const INITIAL_STATE: IUserStateProps = {
+	loading: ref.loading,
+	signed: ref.signed,
+	user: ref.user,
+};
+
+/*const INITIAL_STATE: IUserStateProps = {
+	loading: false,
+	signed: false,
+	user: null,
+}; */
 
 function app(
 	state = INITIAL_STATE,

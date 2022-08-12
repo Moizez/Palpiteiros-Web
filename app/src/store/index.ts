@@ -3,16 +3,15 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 
-// import rootReducer from './modules/rootReducer';
-// import rootSaga from './modules/rootSaga';
+import rootReducer from './modules/rootReducer';
+import rootSaga from './modules/rootSaga';
 
 const persistConfig = {
 	key: 'root',
 	storage,
 	blacklist: ['auth'],
 };
-//@ts-ignore
-const persistedReducer = persistReducer(persistConfig, null);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -22,6 +21,6 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 export { store, persistor };

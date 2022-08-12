@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+
 import './App.css';
+import { PersistGate } from 'redux-persist/integration/react';
+import { useDispatch } from 'react-redux';
+import { signInRequest } from './store/modules/auth/actions';
+import { Provider as StoreProvider } from 'react-redux';
+import { store, persistor } from './store';
+import Home from './mvvm/views/Home';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<StoreProvider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<Home />
+			</PersistGate>
+		</StoreProvider>
+	);
 }
 
 export default App;
