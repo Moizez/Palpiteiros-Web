@@ -74,7 +74,7 @@ export default class ConnectorAxios
 		headers?: AxiosRequestHeaders | undefined
 	): Promise<Response<T, AxiosResponse<any, any>>> {
 		if (this.instance)
-			return this.instance?.post(url, body, {
+			return this.instance?.put(url, body, {
 				headers,
 			});
 		throw this.error();
